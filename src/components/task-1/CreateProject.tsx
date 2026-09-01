@@ -3,10 +3,11 @@ import { useState } from "react";
 import Step1 from "./Step1";
 import Step2 from "./Step2";
 import Step3 from "./Step3";
+import Step4 from "./Step4";
 
 const CreateProject = () => {
   const totalSteps = 4;
-  const [currentStep, setCurrentStep] = useState(3)
+  const [currentStep, setCurrentStep] = useState(4)
 
   return (
     <div className="relative h-screen w-screen overflow-hidden bg-gray-100">
@@ -28,6 +29,9 @@ const CreateProject = () => {
             {
               currentStep === 3 && <Step3 />
             }
+            {
+              currentStep === 4 && <Step4 />
+            }
           </div>
 
           <div className="relative mt-auto flex items-center py-4 shrink-0">
@@ -46,7 +50,7 @@ const CreateProject = () => {
               className="absolute left-1/2 -translate-x-1/2 rounded bg-blue-500 px-6 py-2 text-sm font-semibold text-white transition-all duration-300 hover:bg-blue-600"
               onClick={() => { setCurrentStep((prev) => Math.min(prev + 1, totalSteps)) }}
             >
-              Next
+              {currentStep === 4 ? "Submit" : "Next"}
             </button>
           </div>
 
