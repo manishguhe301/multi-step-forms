@@ -7,7 +7,7 @@ import DateInput from "../elements/DateInput"
 import StepHeader from "../elements/StepHeader"
 import { today, type StepProps } from "../../utils/helper"
 
-const Step1 = ({ formData, setFormData }: StepProps) => {
+const Step1 = ({ formData, setFormData, errors }: StepProps) => {
   return (
     <div className="flex flex-col gap-4 py-4">
       <StepHeader stepTitle="Create a project" />
@@ -26,6 +26,11 @@ const Step1 = ({ formData, setFormData }: StepProps) => {
               }))
             }
           />
+          {errors?.projectName && (
+            <p className="mt-0 text-xs font-medium text-red-500">
+              {errors.projectName}
+            </p>
+          )}
         </InputContainer>
 
         <InputContainer>
@@ -68,6 +73,12 @@ const Step1 = ({ formData, setFormData }: StepProps) => {
               </span>
             </button>
           </div>
+
+          {errors?.client && (
+            <p className="text-xs font-medium text-red-500">
+              {errors.client}
+            </p>
+          )}
         </InputContainer>
 
         <InputContainer>
@@ -102,6 +113,11 @@ const Step1 = ({ formData, setFormData }: StepProps) => {
               }
             />
           </div>
+          {(errors?.startDate || errors?.endDate) && (
+            <p className=" text-xs font-medium text-red-500">
+              {errors.startDate || errors.endDate}
+            </p>
+          )}
         </InputContainer>
 
         <InputContainer>

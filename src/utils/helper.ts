@@ -5,6 +5,7 @@ export const today = new Date().toISOString().split('T')[0];
 export type StepProps = {
   formData: ProjectFormData;
   setFormData: React.Dispatch<React.SetStateAction<ProjectFormData>>;
+  errors?: FormErrors;
 };
 
 export type ProjectFormData = {
@@ -25,3 +26,5 @@ export type ProjectFormData = {
   view: string;
   projectPermission: string;
 };
+
+export type FormErrors = Partial<Record<keyof ProjectFormData, string>>;

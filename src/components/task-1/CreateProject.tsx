@@ -4,7 +4,7 @@ import Step1 from "./Step1";
 import Step2 from "./Step2";
 import Step3 from "./Step3";
 import Step4 from "./Step4";
-import { today, type ProjectFormData } from "../../utils/helper";
+import { today, type ProjectFormData, type FormErrors } from "../../utils/helper";
 
 const CreateProject = () => {
   const totalSteps = 4;
@@ -29,6 +29,38 @@ const CreateProject = () => {
     projectPermission: "Everyone",
   });
 
+  const [errors, setErrors] = useState<FormErrors>({});
+
+  const validateStep = (step: number): boolean => {
+    const newErrors: FormErrors = {};
+
+    if (step === 1) {
+      if (!formData.projectName.trim()) {
+        newErrors.projectName = "Project name is required";
+      }
+
+      if (!formData.client) {
+        newErrors.client = "Please select a client";
+      }
+
+      if (!formData.startDate) {
+        newErrors.startDate = "Start date is required";
+      } else if (formData.startDate < today) {
+        newErrors.startDate = "Start date cannot be before today";
+      }
+
+      if (!formData.endDate) {
+        newErrors.endDate = "End date is required";
+      } else if (formData.endDate < formData.startDate) {
+        newErrors.endDate = "End date must be after the start date";
+      }
+    }
+
+    setErrors(newErrors);
+
+    return Object.keys(newErrors).length === 0;
+  };
+
   return (
     <div className="relative h-screen w-screen overflow-hidden bg-gray-100">
       <div className="absolute left-1/2 top-1/2 flex h-162.5 max-h-[calc(100vh-2rem)] w-121 max-w-[calc(100vw-2rem)] -translate-x-1/2 -translate-y-1/2 flex-col rounded-xl bg-white p-3 shadow-2xl">
@@ -39,30 +71,34 @@ const CreateProject = () => {
         />
 
         <div className="flex h-full min-h-0 flex-col p-3 sm:p-5">
-          <div className="min-h-0 flex-1 overflow-y-auto ">
+          <div className="min-h-0 flex-1 overflow-y-auto no-scrollbar">
             {
               currentStep === 1 &&
               <Step1
                 formData={formData}
                 setFormData={setFormData}
+                errors={errors}
               />
             }
             {currentStep === 2 && (
               <Step2
                 formData={formData}
                 setFormData={setFormData}
+                errors={errors}
               />
             )}
             {
               currentStep === 3 && <Step3
                 formData={formData}
                 setFormData={setFormData}
+                errors={errors}
               />
             }
             {
               currentStep === 4 && <Step4
                 formData={formData}
-                setFormData={setFormData} 
+                setFormData={setFormData}
+                errors={errors}
               />
             }
           </div>
@@ -82,8 +118,14 @@ const CreateProject = () => {
               type="button"
               className="absolute left-1/2 -translate-x-1/2 rounded bg-blue-500 px-6 py-2 text-sm font-semibold text-white transition-all duration-300 hover:bg-blue-600 cursor-pointer"
               onClick={() => {
-                setCurrentStep((prev) => Math.min(prev + 1, totalSteps))
-                console.log(formData);
+                if (currentStep === totalSteps) {
+                  console.log(formData)
+                  return;
+                }
+
+                if (validateStep(currentStep)) {
+                  setCurrentStep((prev) => Math.min(prev + 1, totalSteps));
+                }
               }}
             >
               {currentStep === 4 ? "Submit" : "Next"}
