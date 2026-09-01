@@ -45,7 +45,9 @@ const Step1 = () => {
               </span>
             </div>
 
-            <button className="flex shrink-0 items-center justify-center gap-1 rounded-sm border-2 border-gray-300 px-3 sm:px-4 py-2 text-sm text-gray-400 transition-colors duration-200 hover:bg-gray-300 focus:outline-none cursor-pointer max-sm:w-full">
+            <button
+              type="button"
+              className="flex shrink-0 items-center justify-center gap-1 rounded-sm border-2 border-gray-300 px-3 sm:px-4 py-2 text-sm text-gray-400 transition-colors duration-200 hover:bg-gray-300 focus:outline-none cursor-pointer max-sm:w-full">
               <Plus
                 strokeWidth={3}
                 size={16}

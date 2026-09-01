@@ -6,7 +6,7 @@ import Step3 from "./Step3";
 
 const CreateProject = () => {
   const totalSteps = 4;
-  const [currentStep, setCurrentStep] = useState(2)
+  const [currentStep, setCurrentStep] = useState(3)
 
   return (
     <div className="relative h-screen w-screen overflow-hidden bg-gray-100">
@@ -32,6 +32,7 @@ const CreateProject = () => {
 
           <div className="relative mt-auto flex items-center py-4 shrink-0">
             <button
+              type="button"
               className="flex items-center gap-1 text-sm font-semibold text-gray-400 disabled:cursor-not-allowed disabled:opacity-50"
               onClick={() => { setCurrentStep((prev) => Math.max(prev - 1, 1)) }}
               disabled={currentStep === 1}
@@ -40,7 +41,9 @@ const CreateProject = () => {
               Back
             </button>
 
-            <button className="absolute left-1/2 -translate-x-1/2 rounded bg-blue-500 px-6 py-2 text-sm font-semibold text-white transition-all duration-300 hover:bg-blue-600"
+            <button
+              type="button"
+              className="absolute left-1/2 -translate-x-1/2 rounded bg-blue-500 px-6 py-2 text-sm font-semibold text-white transition-all duration-300 hover:bg-blue-600"
               onClick={() => { setCurrentStep((prev) => Math.min(prev + 1, totalSteps)) }}
             >
               Next

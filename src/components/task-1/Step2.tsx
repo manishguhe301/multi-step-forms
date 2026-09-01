@@ -130,7 +130,7 @@ const Step2 = () => {
           </div>
         </InputContainer>
       </div>
-    </div>
+    </div >
   )
 }
 
