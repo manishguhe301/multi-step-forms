@@ -1,4 +1,4 @@
-import CreateProject from "./task-1/CreateProject"
+import CreateProject from "./components/task-1/CreateProject"
 
 const App = () => {
   return (

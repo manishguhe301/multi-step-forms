@@ -1,5 +1,6 @@
 import { ChevronLeft, X } from "lucide-react";
 import { useState } from "react";
+import Step1 from "./Step1";
 
 const CreateProject = () => {
   const totalSteps = 4;
@@ -16,7 +17,9 @@ const CreateProject = () => {
 
         <div className="flex h-full flex-col p-5">
           <div className="p-2">
-            {/* steps */}
+            {
+              currentStep === 1 && <Step1 />
+            }
           </div>
 
           <div className="relative mt-auto flex items-center py-4">
