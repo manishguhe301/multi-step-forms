@@ -53,7 +53,7 @@ export const validateStep = (
     if (!formData.endDate) {
       errors.endDate = 'End date is required';
     } else if (formData.startDate && formData.endDate < formData.startDate) {
-      errors.endDate = 'End date must be after the start date';
+      errors.endDate = 'End date cannot be before the start date';
     }
   }
 
@@ -104,4 +104,23 @@ export const validateStep = (
   }
 
   return errors;
+};
+
+export const defaultFields = {
+  projectName: '',
+  client: '',
+  startDate: today,
+  endDate: today,
+  notes: '',
+
+  projectType: 'Time & Materials',
+  hourlyRateType: '',
+  hourlyRate: '',
+  budgetType: 'hours-person',
+  budgetResetsMonthly: false,
+  budgetAlertEnabled: false,
+  budgetAlertPercentage: '80',
+
+  view: 'List',
+  projectPermission: 'Everyone',
 };
