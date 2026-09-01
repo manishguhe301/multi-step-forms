@@ -4,26 +4,7 @@ import Step1 from "./Step1";
 import Step2 from "./Step2";
 import Step3 from "./Step3";
 import Step4 from "./Step4";
-import { today } from "../../utils/helper";
-
-export type ProjectFormData = {
-  projectName: string;
-  client: string;
-  startDate: string;
-  endDate: string;
-  notes: string;
-
-  projectType: string;
-  hourlyRateType: string;
-  hourlyRate: string;
-  budgetType: string;
-  budgetResetsMonthly: boolean;
-  budgetAlertEnabled: boolean;
-  budgetAlertPercentage: string;
-
-  view: string;
-  projectPermission: string;
-};
+import { today, type ProjectFormData } from "../../utils/helper";
 
 const CreateProject = () => {
   const totalSteps = 4;
