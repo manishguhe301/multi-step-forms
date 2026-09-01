@@ -4,7 +4,7 @@ import Step1 from "./Step1";
 import Step2 from "./Step2";
 import Step3 from "./Step3";
 import Step4 from "./Step4";
-import { today, type ProjectFormData, type FormErrors } from "../../utils/helper";
+import { today, type ProjectFormData, type FormErrors, validateStep } from "../../utils/helper";
 
 const CreateProject = () => {
   const totalSteps = 4;
@@ -31,34 +31,30 @@ const CreateProject = () => {
 
   const [errors, setErrors] = useState<FormErrors>({});
 
-  const validateStep = (step: number): boolean => {
-    const newErrors: FormErrors = {};
-
-    if (step === 1) {
-      if (!formData.projectName.trim()) {
-        newErrors.projectName = "Project name is required";
-      }
-
-      if (!formData.client) {
-        newErrors.client = "Please select a client";
-      }
-
-      if (!formData.startDate) {
-        newErrors.startDate = "Start date is required";
-      } else if (formData.startDate < today) {
-        newErrors.startDate = "Start date cannot be before today";
-      }
-
-      if (!formData.endDate) {
-        newErrors.endDate = "End date is required";
-      } else if (formData.endDate < formData.startDate) {
-        newErrors.endDate = "End date must be after the start date";
-      }
-    }
+  const handleNext = () => {
+    const newErrors = validateStep(currentStep, formData);
 
     setErrors(newErrors);
 
-    return Object.keys(newErrors).length === 0;
+    if (Object.keys(newErrors).length > 0) {
+      return;
+    }
+
+    if (currentStep < totalSteps) {
+      setCurrentStep((prev) => prev + 1);
+    }
+  };
+
+  const handleSubmit = () => {
+    const newErrors = validateStep(currentStep, formData);
+
+    setErrors(newErrors);
+
+    if (Object.keys(newErrors).length > 0) {
+      return;
+    }
+
+    console.log("Project submitted:", formData);
   };
 
   return (
@@ -117,16 +113,7 @@ const CreateProject = () => {
             <button
               type="button"
               className="absolute left-1/2 -translate-x-1/2 rounded bg-blue-500 px-6 py-2 text-sm font-semibold text-white transition-all duration-300 hover:bg-blue-600 cursor-pointer"
-              onClick={() => {
-                if (currentStep === totalSteps) {
-                  console.log(formData)
-                  return;
-                }
-
-                if (validateStep(currentStep)) {
-                  setCurrentStep((prev) => Math.min(prev + 1, totalSteps));
-                }
-              }}
+              onClick={currentStep === totalSteps ? handleSubmit : handleNext}
             >
               {currentStep === 4 ? "Submit" : "Next"}
             </button>
