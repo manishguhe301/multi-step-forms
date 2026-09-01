@@ -12,6 +12,14 @@ export type ProjectFormData = {
   startDate: string;
   endDate: string;
   notes: string;
+
+  projectType: string;
+  hourlyRateType: string;
+  hourlyRate: string;
+  budgetType: string;
+  budgetResetsMonthly: boolean;
+  budgetAlertEnabled: boolean;
+  budgetAlertPercentage: string;
 };
 
 const CreateProject = () => {
@@ -24,6 +32,14 @@ const CreateProject = () => {
     startDate: today,
     endDate: today,
     notes: "",
+
+    projectType: "Time & Materials",
+    hourlyRateType: "",
+    hourlyRate: "",
+    budgetType: "hours-person",
+    budgetResetsMonthly: false,
+    budgetAlertEnabled: false,
+    budgetAlertPercentage: "80",
   });
 
   return (
@@ -44,9 +60,12 @@ const CreateProject = () => {
                 setFormData={setFormData}
               />
             }
-            {
-              currentStep === 2 && <Step2 />
-            }
+            {currentStep === 2 && (
+              <Step2
+                formData={formData}
+                setFormData={setFormData}
+              />
+            )}
             {
               currentStep === 3 && <Step3 />
             }
