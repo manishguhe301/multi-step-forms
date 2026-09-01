@@ -32,6 +32,7 @@ const Step1 = () => {
             <div className="flex-1">
               <Select
                 id="client"
+                textToShow="Select a client"
                 options={[
                   { value: "acme", label: "Acme Corporation" },
                   { value: "google", label: "Google" },
@@ -45,7 +46,7 @@ const Step1 = () => {
               Or
             </span>
 
-            <button className="flex shrink-0 items-center justify-center gap-2 rounded-sm border-2 border-gray-300 px-3 sm:px-4 py-2 text-sm text-gray-600 transition-colors duration-200 hover:bg-gray-300 focus:outline-none cursor-pointer">
+            <button className="flex shrink-0 items-center justify-center gap-1 rounded-sm border-2 border-gray-300 px-3 sm:px-4 py-2 text-sm text-gray-400 transition-colors duration-200 hover:bg-gray-300 focus:outline-none cursor-pointer">
               <Plus
                 strokeWidth={3}
                 size={16}
