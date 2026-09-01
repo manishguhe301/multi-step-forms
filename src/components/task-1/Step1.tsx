@@ -5,15 +5,9 @@ import Input from "../elements/Input"
 import Select from "../elements/Select"
 import DateInput from "../elements/DateInput"
 import StepHeader from "../elements/StepHeader"
-import type { ProjectFormData } from "./CreateProject"
-import { today } from "../../utils/helper"
+import { today, type StepProps } from "../../utils/helper"
 
-type Step1Props = {
-  formData: ProjectFormData;
-  setFormData: React.Dispatch<React.SetStateAction<ProjectFormData>>;
-};
-
-const Step1 = ({ formData, setFormData }: Step1Props) => {
+const Step1 = ({ formData, setFormData }: StepProps) => {
   return (
     <div className="flex flex-col gap-4 py-4">
       <StepHeader stepTitle="Create a project" />
