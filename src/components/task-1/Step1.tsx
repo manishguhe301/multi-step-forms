@@ -4,9 +4,10 @@ import Label from "../elements/Label"
 import Input from "../elements/Input"
 import Select from "../elements/Select"
 import { useState } from "react"
-import { today } from "../../utils/helpers"
 import DateInput from "../elements/DateInput"
 import StepHeader from "../elements/StepHeader"
+
+const today = new Date().toISOString().split('T')[0];
 
 const Step1 = () => {
   const [startDate, setStartDate] = useState(today);
