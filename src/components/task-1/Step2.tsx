@@ -18,7 +18,7 @@ const Step2 = () => {
         subTitle="Don't panic - You can also customize this types in settings"
       />
 
-      <div className="flex w-full h-full flex-col gap-6">
+      <div className="flex h-full min-h-0 flex-col gap-5 py-2">
         <div className="flex w-full overflow-hidden rounded-sm border border-gray-300 mt-4">
           {types.map((type, index) => {
             const isSelected = selectedType === type;
@@ -28,9 +28,9 @@ const Step2 = () => {
                 key={type}
                 type="button"
                 onClick={() => setSelectedType(type)}
-                className={`flex flex-1 items-center justify-center px-3 py-2.5 text-xs  font-medium transition-colors duration-200 tracking-tight ${isSelected
+                className={`flex flex-1 items-center justify-center px-3 py-2.5 text-xs  font-medium transition-colors duration-200  ${isSelected
                   ? "bg-blue-500 text-white"
-                  : "bg-gray-50 text-gray-400 hover:bg-gray-200 cursor-pointer"
+                  : "bg-gray-50 text-gray-500 hover:bg-gray-200 cursor-pointer"
                   } ${index !== types.length - 1 ? "border-r-2 border-gray-300" : ""
                   }`}
               >
@@ -58,7 +58,7 @@ const Step2 = () => {
               ]}
               className="w-1/2! "
             />
-            <div className="relative w-[30%]">
+            <div className="relative w-[30%] max-sm:w-1/2">
               <IndianRupee className="absolute top-3 left-2 text-gray-400" strokeWidth={3} size={16} />
               <Input
                 type="number"
@@ -84,31 +84,46 @@ const Step2 = () => {
               { value: "hours-week", label: "Hours per Week" },
             ]}
             defaultValue="hours-person"
-            className="w-1/2! mt-2.5"
+            className="w-1/2! mt-2.5 max-sm:w-full!"
           />
 
-          <div className="flex flex-col gap-1.5 mt-2.5">
-            <div className="flex items-center gap-2">
-              <input type="checkbox" name="reset" id="reset" />
-              <label htmlFor="reset" className="text-sm text-gray-400">Budget resets every month</label>
-            </div>
+          <div className="mt-2.5 flex flex-col gap-2">
+            <label
+              htmlFor="reset"
+              className="flex cursor-pointer items-center gap-2 text-sm text-gray-400"
+            >
+              <input
+                type="checkbox"
+                name="reset"
+                id="reset"
+                className="size-3.5 shrink-0 cursor-pointer accent-blue-500"
+              />
+
+              <span>Budget resets every month</span>
+            </label>
 
             <div className="flex items-center gap-2">
-              <input type="checkbox" name="alert" id="alert" />
-              <div className="flex flex-row  items-center  gap-2 text-sm text-gray-400">
+              <input
+                type="checkbox"
+                name="alert"
+                id="alert"
+                className="mt-0.5 size-3.5 shrink-0 cursor-pointer accent-blue-500"
+              />
+
+              <div className="flex min-w-0 flex-wrap items-center gap-2 text-sm text-gray-400">
                 <label htmlFor="alert">
                   Send email alerts if project exceeds
                 </label>
+
                 <Input
                   type="number"
                   placeholder="0.00"
-                  className="w-16! p-1! "
+                  className="w-16! shrink-0 p-1!"
                   value="80.00"
                   disabled
                 />
-                <label htmlFor="alert">
-                  % of budget
-                </label>
+
+                <span className="shrink-0">% of budget</span>
               </div>
             </div>
           </div>
