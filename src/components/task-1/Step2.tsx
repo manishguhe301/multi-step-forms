@@ -119,7 +119,7 @@ const Step2 = () => {
                 <Input
                   type="number"
                   placeholder="0.00"
-                  className="w-16! shrink-0 p-1!"
+                  className="w-16! shrink-0 p-1! text-sm! rounded-sm"
                   value="80.00"
                   disabled
                 />

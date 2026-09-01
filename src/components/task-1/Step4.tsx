@@ -30,7 +30,7 @@ const Step4 = () => {
         subTitle="Don't panic - You can also customize this permissions in settings"
       />
 
-      <div className="flex w-full flex-col gap-4 py-4 sm:gap-6 ">
+      <div className="flex w-full flex-col gap-4 py-4  ">
         {options.map((option) => {
           const isSelected = selectedOption === option.type;
           const Icon = option.icon;
@@ -42,7 +42,7 @@ const Step4 = () => {
               onClick={() => setSelectedOption(option.type)}
               className={`flex w-full cursor-pointer items-center gap-4 rounded-sm border-2 p-4 text-left transition-all duration-200 ${isSelected
                 ? "border-blue-500 shadow-sm"
-                : "border-gray-300 hover:border-gray-400 hover:bg-gray-50"
+                : "border-gray-200 hover:border-gray-400 hover:bg-gray-50"
                 }`}
             >
               <div
