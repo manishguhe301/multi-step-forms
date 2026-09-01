@@ -6,6 +6,8 @@ const Select = ({
   textToShow = "Select an option",
   className = "",
   defaultValue = "",
+  value,
+  onChange
 }: {
   id?: string;
   textToShow?: string;
@@ -15,11 +17,15 @@ const Select = ({
   }[];
   className?: string;
   defaultValue?: string;
+  value?: string;
+  onChange?: (value: string) => void;
 }) => {
   return (
-    <div className= {`relative w-full ${className} `}>
+    <div className={`relative w-full ${className} `}>
       <select
         id={id}
+        value={value}
+        onChange={(e) => onChange?.(e.target.value)}
         defaultValue={defaultValue}
         className={`w-full appearance-none rounded-sm border-2 border-gray-300 bg-gray-50 px-3 py-2 pr-10 text-sm text-gray-500! outline-none focus:border-blue-400 focus:ring-blue-400 $`}
       >

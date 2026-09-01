@@ -1,11 +1,12 @@
 
-const Input = ({ type, id, placeholder, className, value, disabled }: {
+const Input = ({ type, id, placeholder, className, value, disabled, onChange }: {
   type: string,
   id?: string,
   placeholder: string,
   className?: string,
   value?: string | number,
-  disabled?: boolean
+  disabled?: boolean,
+  onChange?: (value: string) => void;
 }) => {
   return (
     <input
@@ -16,6 +17,7 @@ const Input = ({ type, id, placeholder, className, value, disabled }: {
       className={`w-full rounded-sm border-2 border-gray-300 bg-gray-50 px-3 py-2 text-sm text-gray-500 focus:border-blue-400 focus:ring-blue-400 outline-none disabled:cursor-not-allowed ${className || ""}`}
       min={type === "number" ? 0 : undefined}
       disabled={disabled}
+      onChange={(e) => onChange?.(e.target.value)}
     />
   )
 }
