@@ -1,6 +1,10 @@
+import CreateProject from "./task-1/CreateProject"
+
 const App = () => {
   return (
-    <div className="">App</div>
+    <div className="">
+      <CreateProject />
+    </div>
   )
 }
 
