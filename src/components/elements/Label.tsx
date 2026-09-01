@@ -7,7 +7,7 @@ const Label = ({ htmlFor, label }: {
     <div>
       <label
         htmlFor={htmlFor}
-        className="font-semibold text-sm text-gray-700"
+        className="font-semibold text-sm text-gray-700 capitalize"
       >
         {label}
       </label>
