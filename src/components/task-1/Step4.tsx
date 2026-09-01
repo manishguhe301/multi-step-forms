@@ -1,6 +1,6 @@
 import { CircleUser, PackageOpen, Users } from "lucide-react"
 import StepHeader from "../elements/StepHeader"
-import { useState } from "react"
+import type { StepProps } from "../../utils/helper";
 
 const options = [
   {
@@ -20,8 +20,7 @@ const options = [
   },
 ];
 
-const Step4 = () => {
-  const [selectedOption, setSelectedOption] = useState(options[0].type)
+const Step4 = ({ formData, setFormData }: StepProps) => {
 
   return (
     <div className="flex flex-col gap-4 py-4 ">
@@ -32,14 +31,14 @@ const Step4 = () => {
 
       <div className="flex w-full flex-col gap-4 py-4  ">
         {options.map((option) => {
-          const isSelected = selectedOption === option.type;
+          const isSelected = formData.projectPermission === option.type;
           const Icon = option.icon;
 
           return (
             <button
               key={option.type}
               type="button"
-              onClick={() => setSelectedOption(option.type)}
+              onClick={() => setFormData((prev) => ({ ...prev, projectPermission: option.type, }))}
               className={`flex w-full cursor-pointer items-center gap-4 rounded-sm border-2 p-4 text-left transition-all duration-200 ${isSelected
                 ? "border-blue-500 shadow-sm"
                 : "border-gray-200 hover:border-gray-400 hover:bg-gray-50"

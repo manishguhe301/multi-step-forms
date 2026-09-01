@@ -1,14 +1,13 @@
 import { SquareKanban, SquareText } from "lucide-react"
 import StepHeader from "../elements/StepHeader"
-import { useState } from "react"
+import type { StepProps } from "../../utils/helper";
 
 const items = [
   { title: "List", icon: SquareText },
   { title: "Board", icon: SquareKanban },
 ];
 
-const Step3 = () => {
-  const [selectedView, setSelectedView] = useState(items[0].title)
+const Step3 = ({ formData, setFormData }: StepProps) => {
   return (
     <div className="flex flex-col gap-4 py-4 ">
       <StepHeader
@@ -18,7 +17,7 @@ const Step3 = () => {
 
       <div className="flex w-full flex-col gap-4 py-4 sm:flex-row sm:gap-6 ">
         {items.map((item) => {
-          const isSelected = selectedView === item.title;
+          const isSelected = formData.view === item.title;
           const Icon = item.icon;
 
           return (
@@ -28,7 +27,7 @@ const Step3 = () => {
             >
               <button
                 type="button"
-                onClick={() => setSelectedView(item.title)}
+                onClick={() => setFormData((prev) => ({ ...prev, view: item.title, }))}
                 className={`flex w-full cursor-pointer flex-col items-center justify-center gap-2 rounded-sm border-2 p-10 transition-colors ${isSelected
                   ? "border-blue-500 shadow-sm hover:bg-blue-50"
                   : "border-gray-300 hover:bg-gray-100"

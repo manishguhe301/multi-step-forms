@@ -20,6 +20,9 @@ export type ProjectFormData = {
   budgetResetsMonthly: boolean;
   budgetAlertEnabled: boolean;
   budgetAlertPercentage: string;
+
+  view: string;
+  projectPermission: string;
 };
 
 const CreateProject = () => {
@@ -40,6 +43,9 @@ const CreateProject = () => {
     budgetResetsMonthly: false,
     budgetAlertEnabled: false,
     budgetAlertPercentage: "80",
+
+    view: "List",
+    projectPermission: "Everyone",
   });
 
   return (
@@ -67,10 +73,16 @@ const CreateProject = () => {
               />
             )}
             {
-              currentStep === 3 && <Step3 />
+              currentStep === 3 && <Step3
+                formData={formData}
+                setFormData={setFormData}
+              />
             }
             {
-              currentStep === 4 && <Step4 />
+              currentStep === 4 && <Step4
+                formData={formData}
+                setFormData={setFormData} 
+              />
             }
           </div>
 
