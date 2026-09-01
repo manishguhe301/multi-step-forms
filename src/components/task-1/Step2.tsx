@@ -29,7 +29,8 @@ const Step2 = () => {
                 type="button"
                 onClick={() => setSelectedType(type)}
                 className={`flex flex-1 items-center justify-center px-3 py-2.5 text-xs  font-medium transition-colors duration-200  ${isSelected
-                  ? "bg-blue-500 text-white"
+                  ? `bg-blue-500 text-white hover:bg-blue-600 ${index === 0 ? "rounded-l-sm" : index === types.length - 1 ? "rounded-r-sm" : ""
+                  }`
                   : "bg-gray-50 text-gray-500 hover:bg-gray-200 cursor-pointer"
                   } ${index !== types.length - 1 ? "border-r-2 border-gray-300" : ""
                   }`}

@@ -2,6 +2,7 @@ import { ChevronLeft, X } from "lucide-react";
 import { useState } from "react";
 import Step1 from "./Step1";
 import Step2 from "./Step2";
+import Step3 from "./Step3";
 
 const CreateProject = () => {
   const totalSteps = 4;
@@ -23,6 +24,9 @@ const CreateProject = () => {
             }
             {
               currentStep === 2 && <Step2 />
+            }
+            {
+              currentStep === 3 && <Step3 />
             }
           </div>
 
