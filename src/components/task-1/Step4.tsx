@@ -20,7 +20,7 @@ const options = [
   },
 ];
 
-const Step4 = ({ formData, setFormData }: StepProps) => {
+const Step4 = ({ formData, setFormData, errors }: StepProps) => {
 
   return (
     <div className="flex flex-col gap-4 py-4 ">
@@ -70,6 +70,12 @@ const Step4 = ({ formData, setFormData }: StepProps) => {
           );
         })}
       </div>
+
+      {errors?.projectPermission && (
+        <p className="text-xs font-medium text-red-500">
+          {errors.projectPermission}
+        </p>
+      )}
     </div>
   )
 }

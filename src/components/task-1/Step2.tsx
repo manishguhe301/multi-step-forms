@@ -8,7 +8,7 @@ import type { StepProps } from "../../utils/helper";
 
 const types = ["Time & Materials", "Fixed Fee", "Non-Billable"]
 
-const Step2 = ({ formData, setFormData }: StepProps) => {
+const Step2 = ({ formData, setFormData, errors }: StepProps) => {
   return (
     <div className="flex flex-col gap-4 py-4 h-full">
       <StepHeader
@@ -17,31 +17,39 @@ const Step2 = ({ formData, setFormData }: StepProps) => {
       />
 
       <div className="flex h-full  flex-col gap-5 py-2">
-        <div className="flex w-full rounded-sm border border-gray-300 mt-4">
-          {types.map((type, index) => {
-            const isSelected = formData.projectType === type;
+        <div>
 
-            return (
-              <button
-                key={type}
-                type="button"
-                onClick={() =>
-                  setFormData((prev) => ({
-                    ...prev,
-                    projectType: type,
-                  }))
-                }
-                className={`flex flex-1 items-center justify-center px-3 py-2.5 text-xs  font-medium transition-colors duration-200  ${isSelected
-                  ? `bg-blue-500 text-white hover:bg-blue-600 ${index === 0 ? "rounded-l-sm" : index === types.length - 1 ? "rounded-r-sm" : ""
-                  }`
-                  : "bg-gray-50 text-gray-500 hover:bg-gray-200 cursor-pointer"
-                  } ${index !== types.length - 1 ? "border-r-2 border-gray-300" : ""
-                  }`}
-              >
-                {type}
-              </button>
-            );
-          })}
+          <div className="flex w-full rounded-sm border border-gray-300 mt-4">
+            {types.map((type, index) => {
+              const isSelected = formData.projectType === type;
+
+              return (
+                <button
+                  key={type}
+                  type="button"
+                  onClick={() =>
+                    setFormData((prev) => ({
+                      ...prev,
+                      projectType: type,
+                    }))
+                  }
+                  className={`flex flex-1 items-center justify-center px-3 py-2.5 text-xs  font-medium transition-colors duration-200  ${isSelected
+                    ? `bg-blue-500 text-white hover:bg-blue-600 ${index === 0 ? "rounded-l-sm" : index === types.length - 1 ? "rounded-r-sm" : ""
+                    }`
+                    : "bg-gray-50 text-gray-500 hover:bg-gray-200 cursor-pointer"
+                    } ${index !== types.length - 1 ? "border-r-2 border-gray-300" : ""
+                    }`}
+                >
+                  {type}
+                </button>
+              );
+            })}
+          </div>
+          {errors?.projectType && (
+            <p className="mt-1 text-xs font-medium text-red-500">
+              {errors.projectType}
+            </p>
+          )}
         </div>
 
         <InputContainer>
@@ -88,6 +96,18 @@ const Step2 = ({ formData, setFormData }: StepProps) => {
               />
             </div>
           </div>
+
+          {errors?.hourlyRateType && (
+            <p className="mt-1 text-xs font-medium text-red-500">
+              {errors.hourlyRateType}
+            </p>
+          )}
+
+          {errors?.hourlyRate && (
+            <p className="mt-1 text-xs font-medium text-red-500">
+              {errors.hourlyRate}
+            </p>
+          )}
         </InputContainer>
 
         <InputContainer>
@@ -112,6 +132,11 @@ const Step2 = ({ formData, setFormData }: StepProps) => {
               }))
             }
           />
+          {errors?.budgetType && (
+            <p className="mt-1 text-xs font-medium text-red-500">
+              {errors.budgetType}
+            </p>
+          )}
 
           <div className="mt-2.5 flex flex-col gap-2">
             <label
@@ -174,6 +199,11 @@ const Step2 = ({ formData, setFormData }: StepProps) => {
               </div>
             </div>
           </div>
+          {errors?.budgetAlertPercentage && (
+            <p className="mt-1 text-xs font-medium text-red-500">
+              {errors.budgetAlertPercentage}
+            </p>
+          )}
         </InputContainer>
       </div>
     </div >

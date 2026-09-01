@@ -7,7 +7,7 @@ const items = [
   { title: "Board", icon: SquareKanban },
 ];
 
-const Step3 = ({ formData, setFormData }: StepProps) => {
+const Step3 = ({ formData, setFormData, errors }: StepProps) => {
   return (
     <div className="flex flex-col gap-4 py-4 ">
       <StepHeader
@@ -52,6 +52,11 @@ const Step3 = ({ formData, setFormData }: StepProps) => {
           );
         })}
       </div>
+      {errors?.view && (
+        <p className="text-center text-xs font-medium text-red-500">
+          {errors.view}
+        </p>
+      )}
     </div>
   )
 }
