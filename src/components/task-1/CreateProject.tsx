@@ -8,32 +8,38 @@ const CreateProject = () => {
 
   return (
     <div className="relative h-screen w-screen overflow-hidden bg-gray-100">
-      <div className="absolute left-1/2 top-1/2 flex h-175 max-h-[90vh] w-112.5 max-w-[90vw] -translate-x-1/2 -translate-y-1/2 flex-col rounded-xl bg-white p-3 shadow-2xl">
+      <div className="absolute left-1/2 top-1/2 flex h-162.5 max-h-[calc(100vh-2rem)] w-112.5 max-w-[calc(100vw-2rem)] -translate-x-1/2 -translate-y-1/2 flex-col rounded-xl bg-white p-3 shadow-2xl">
         <X
           size={16}
           className="absolute right-3 top-3 cursor-pointer text-gray-400"
           strokeWidth={3}
         />
 
-        <div className="flex h-full flex-col p-5">
-          <div className="p-2">
+        <div className="flex h-full min-h-0 flex-col p-3 sm:p-5">
+          <div className="min-h-0 flex-1 overflow-y-auto p-2">
             {
               currentStep === 1 && <Step1 />
             }
           </div>
 
-          <div className="relative mt-auto flex items-center py-4">
-            <button className="flex items-center gap-1 text-sm font-semibold text-gray-400">
+          <div className="relative mt-auto flex items-center py-4 shrink-0">
+            <button
+              className="flex items-center gap-1 text-sm font-semibold text-gray-400 disabled:cursor-not-allowed disabled:opacity-50"
+              onClick={() => { setCurrentStep((prev) => Math.max(prev - 1, 1)) }}
+              disabled={currentStep === 1}
+            >
               <ChevronLeft strokeWidth={3} size={16} />
               Back
             </button>
 
-            <button className="absolute left-1/2 -translate-x-1/2 rounded bg-blue-500 px-6 py-2 text-sm font-semibold text-white transition-all duration-300 hover:bg-blue-600">
+            <button className="absolute left-1/2 -translate-x-1/2 rounded bg-blue-500 px-6 py-2 text-sm font-semibold text-white transition-all duration-300 hover:bg-blue-600"
+              onClick={() => { setCurrentStep((prev) => Math.min(prev + 1, totalSteps)) }}
+            >
               Next
             </button>
           </div>
 
-          <div className="flex items-center justify-center gap-2 mt-4">
+          <div className="mt-4 flex shrink-0 items-center justify-center gap-2">
             {Array.from({ length: totalSteps }).map((_, index) => {
               const step = index + 1;
               const isActive = step === currentStep;

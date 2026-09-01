@@ -12,9 +12,9 @@ const Step1 = () => {
   const [endDate, setEndDate] = useState(today);
 
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-4 py-4">
       <h1 className="text-center font-semibold text-xl text-gray-900">Create a project</h1>
-      <div className=" w-full flex flex-col gap-6">
+      <div className="flex w-full flex-col gap-6">
         <InputContainer>
           <Label htmlFor="projectName" label="Project name" />
           <Input
@@ -44,7 +44,7 @@ const Step1 = () => {
               Or
             </span>
 
-            <button className="flex shrink-0 items-center justify-center gap-2 rounded-sm border-2 border-gray-300 px-4 py-2 text-sm text-gray-600 transition-colors duration-200 hover:bg-gray-300 focus:outline-none cursor-pointer">
+            <button className="flex shrink-0 items-center justify-center gap-2 rounded-sm border-2 border-gray-300 px-3 sm:px-4 py-2 text-sm text-gray-600 transition-colors duration-200 hover:bg-gray-300 focus:outline-none cursor-pointer">
               <Plus
                 strokeWidth={3}
                 size={16}
@@ -60,7 +60,7 @@ const Step1 = () => {
         <InputContainer>
           <Label htmlFor="startDate" label="Dates" />
 
-          <div className="flex items-center gap-1">
+          <div className="flex min-w-0 items-center gap-2">
             <DateInput
               id="startDate"
               min={today}
