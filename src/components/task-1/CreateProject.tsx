@@ -4,10 +4,27 @@ import Step1 from "./Step1";
 import Step2 from "./Step2";
 import Step3 from "./Step3";
 import Step4 from "./Step4";
+import { today } from "../../utils/helper";
+
+export type ProjectFormData = {
+  projectName: string;
+  client: string;
+  startDate: string;
+  endDate: string;
+  notes: string;
+};
 
 const CreateProject = () => {
   const totalSteps = 4;
-  const [currentStep, setCurrentStep] = useState(4)
+  const [currentStep, setCurrentStep] = useState(1)
+
+  const [formData, setFormData] = useState<ProjectFormData>({
+    projectName: "",
+    client: "",
+    startDate: today,
+    endDate: today,
+    notes: "",
+  });
 
   return (
     <div className="relative h-screen w-screen overflow-hidden bg-gray-100">
@@ -21,7 +38,11 @@ const CreateProject = () => {
         <div className="flex h-full min-h-0 flex-col p-3 sm:p-5">
           <div className="min-h-0 flex-1 overflow-y-auto ">
             {
-              currentStep === 1 && <Step1 />
+              currentStep === 1 &&
+              <Step1
+                formData={formData}
+                setFormData={setFormData}
+              />
             }
             {
               currentStep === 2 && <Step2 />
@@ -48,7 +69,10 @@ const CreateProject = () => {
             <button
               type="button"
               className="absolute left-1/2 -translate-x-1/2 rounded bg-blue-500 px-6 py-2 text-sm font-semibold text-white transition-all duration-300 hover:bg-blue-600 cursor-pointer"
-              onClick={() => { setCurrentStep((prev) => Math.min(prev + 1, totalSteps)) }}
+              onClick={() => {
+                setCurrentStep((prev) => Math.min(prev + 1, totalSteps))
+                console.log(formData);
+              }}
             >
               {currentStep === 4 ? "Submit" : "Next"}
             </button>

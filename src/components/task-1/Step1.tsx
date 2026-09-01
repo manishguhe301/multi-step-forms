@@ -3,16 +3,17 @@ import InputContainer from "../elements/InputContainer"
 import Label from "../elements/Label"
 import Input from "../elements/Input"
 import Select from "../elements/Select"
-import { useState } from "react"
 import DateInput from "../elements/DateInput"
 import StepHeader from "../elements/StepHeader"
+import type { ProjectFormData } from "./CreateProject"
+import { today } from "../../utils/helper"
 
-const today = new Date().toISOString().split('T')[0];
+type Step1Props = {
+  formData: ProjectFormData;
+  setFormData: React.Dispatch<React.SetStateAction<ProjectFormData>>;
+};
 
-const Step1 = () => {
-  const [startDate, setStartDate] = useState(today);
-  const [endDate, setEndDate] = useState(today);
-
+const Step1 = ({ formData, setFormData }: Step1Props) => {
   return (
     <div className="flex flex-col gap-4 py-4">
       <StepHeader stepTitle="Create a project" />
@@ -23,6 +24,13 @@ const Step1 = () => {
             type="text"
             id="projectName"
             placeholder="Enter project name here"
+            value={formData.projectName}
+            onChange={(value) =>
+              setFormData((prev) => ({
+                ...prev,
+                projectName: value,
+              }))
+            }
           />
         </InputContainer>
 
@@ -40,6 +48,13 @@ const Step1 = () => {
                   { value: "microsoft", label: "Microsoft" },
                   { value: "amazon", label: "Amazon" },
                 ]}
+                value={formData.client}
+                onChange={(value) =>
+                  setFormData((prev) => ({
+                    ...prev,
+                    client: value,
+                  }))
+                }
               />
               <span className="shrink-0 text-sm text-gray-400">
                 Or
@@ -69,8 +84,13 @@ const Step1 = () => {
               <DateInput
                 id="startDate"
                 min={today}
-                value={startDate}
-                onChange={setStartDate}
+                value={formData.startDate}
+                onChange={(value) =>
+                  setFormData((prev) => ({
+                    ...prev,
+                    startDate: value,
+                  }))
+                }
               />
 
               <span className="shrink-0 text-sm text-gray-400">-</span>
@@ -78,9 +98,14 @@ const Step1 = () => {
 
             <DateInput
               id="endDate"
-              min={startDate}
-              value={endDate}
-              onChange={setEndDate}
+              min={formData.startDate}
+              value={formData.endDate}
+              onChange={(value) =>
+                setFormData((prev) => ({
+                  ...prev,
+                  endDate: value,
+                }))
+              }
             />
           </div>
         </InputContainer>
@@ -91,6 +116,13 @@ const Step1 = () => {
           <textarea
             id="notes"
             placeholder="Optional"
+            value={formData.notes}
+            onChange={(e) =>
+              setFormData((prev) => ({
+                ...prev,
+                notes: e.target.value,
+              }))
+            }
             className="w-full h-24 rounded-sm border-2 border-gray-300 bg-gray-50 px-3 py-2 text-sm text-gray-500 focus:border-blue-400 focus:ring-blue-400 outline-none resize-none"
           />
         </InputContainer>
