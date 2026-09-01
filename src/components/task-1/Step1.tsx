@@ -6,6 +6,7 @@ import Select from "../elements/Select"
 import { useState } from "react"
 import { today } from "../../utils/helpers"
 import DateInput from "../elements/DateInput"
+import StepHeader from "../elements/StepHeader"
 
 const Step1 = () => {
   const [startDate, setStartDate] = useState(today);
@@ -13,7 +14,7 @@ const Step1 = () => {
 
   return (
     <div className="flex flex-col gap-4 py-4">
-      <h1 className="text-center font-semibold text-xl text-gray-900">Create a project</h1>
+      <StepHeader stepTitle="Create a project" />
       <div className="flex w-full flex-col gap-6">
         <InputContainer>
           <Label htmlFor="projectName" label="Project name" />
