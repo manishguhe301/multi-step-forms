@@ -18,8 +18,8 @@ const Step2 = () => {
         subTitle="Don't panic - You can also customize this types in settings"
       />
 
-      <div className="flex h-full min-h-0 flex-col gap-5 py-2">
-        <div className="flex w-full overflow-hidden rounded-sm border border-gray-300 mt-4">
+      <div className="flex h-full  flex-col gap-5 py-2">
+        <div className="flex w-full rounded-sm border border-gray-300 mt-4">
           {types.map((type, index) => {
             const isSelected = selectedType === type;
 

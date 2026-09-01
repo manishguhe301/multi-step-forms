@@ -28,8 +28,8 @@ const Step1 = () => {
         <InputContainer>
           <Label htmlFor="client" label="Client" />
 
-          <div className="flex items-center gap-2">
-            <div className="flex-1">
+          <div className="flex items-center gap-2 max-sm:flex-col max-sm:w-full">
+            <div className="flex-1 flex flex-row items-center gap-2 max-sm:w-full">
               <Select
                 id="client"
                 textToShow="Select a client"
@@ -40,13 +40,12 @@ const Step1 = () => {
                   { value: "amazon", label: "Amazon" },
                 ]}
               />
+              <span className="shrink-0 text-sm text-gray-400">
+                Or
+              </span>
             </div>
 
-            <span className="shrink-0 text-sm text-gray-400">
-              Or
-            </span>
-
-            <button className="flex shrink-0 items-center justify-center gap-1 rounded-sm border-2 border-gray-300 px-3 sm:px-4 py-2 text-sm text-gray-400 transition-colors duration-200 hover:bg-gray-300 focus:outline-none cursor-pointer">
+            <button className="flex shrink-0 items-center justify-center gap-1 rounded-sm border-2 border-gray-300 px-3 sm:px-4 py-2 text-sm text-gray-400 transition-colors duration-200 hover:bg-gray-300 focus:outline-none cursor-pointer max-sm:w-full">
               <Plus
                 strokeWidth={3}
                 size={16}
@@ -62,15 +61,17 @@ const Step1 = () => {
         <InputContainer>
           <Label htmlFor="startDate" label="Dates" />
 
-          <div className="flex min-w-0 items-center gap-2">
-            <DateInput
-              id="startDate"
-              min={today}
-              value={startDate}
-              onChange={setStartDate}
-            />
+          <div className="flex min-w-0 items-center gap-2 max-sm:flex-col">
+            <div className="flex  items-center gap-2 w-full">
+              <DateInput
+                id="startDate"
+                min={today}
+                value={startDate}
+                onChange={setStartDate}
+              />
 
-            <span className="shrink-0 text-sm text-gray-400">-</span>
+              <span className="shrink-0 text-sm text-gray-400">-</span>
+            </div>
 
             <DateInput
               id="endDate"
