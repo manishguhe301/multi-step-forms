@@ -5,6 +5,7 @@ import Step2 from "./Step2";
 import Step3 from "./Step3";
 import Step4 from "./Step4";
 import { type ProjectFormData, type FormErrors, validateStep, defaultFields } from "../../utils/helper";
+import { useNavigate } from "react-router-dom";
 
 const CreateProject = () => {
   const totalSteps = 4;
@@ -14,6 +15,7 @@ const CreateProject = () => {
 
   const [errors, setErrors] = useState<FormErrors>({});
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const navigate = useNavigate()
 
   const handleNext = () => {
     const newErrors = validateStep(currentStep, formData);
@@ -78,11 +80,13 @@ const CreateProject = () => {
             </span>
           </div>
         ) : <div className="absolute left-1/2 top-1/2 flex h-162.5 max-h-[calc(100vh-2rem)] w-121 max-w-[calc(100vw-2rem)] -translate-x-1/2 -translate-y-1/2 flex-col rounded-xl bg-white p-3 shadow-2xl" >
-          <X
-            size={16}
-            className="absolute right-3 top-3 cursor-pointer text-gray-400"
-            strokeWidth={3}
-          />
+          <button
+            type="button"
+            onClick={() => navigate("/")}
+            className="absolute right-3 top-3 cursor-pointer text-gray-400 transition-colors hover:text-gray-600"
+          >
+            <X size={16} strokeWidth={3} />
+          </button>
 
           <div className="flex h-full min-h-0 flex-col p-3 sm:p-5">
             <div className="min-h-0 flex-1 overflow-y-auto no-scrollbar">
