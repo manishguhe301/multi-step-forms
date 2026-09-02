@@ -7,7 +7,8 @@ const Select = ({
   className = "",
   defaultValue = "",
   value,
-  onChange
+  onChange,
+  isTask2 = false
 }: {
   id?: string;
   textToShow?: string;
@@ -19,6 +20,7 @@ const Select = ({
   defaultValue?: string;
   value?: string;
   onChange?: (value: string) => void;
+  isTask2?: boolean
 }) => {
   return (
     <div className={`relative w-full ${className} `}>
@@ -27,7 +29,7 @@ const Select = ({
         value={value}
         onChange={(e) => onChange?.(e.target.value)}
         defaultValue={defaultValue}
-        className={`w-full appearance-none rounded-sm border-2 border-gray-300 bg-gray-50 px-3 py-2 pr-10 text-sm text-gray-500! outline-none focus:border-blue-400 focus:ring-blue-400 $`}
+        className={`w-full appearance-none rounded-sm border-2 border-gray-300 bg-gray-50 pr-10 text-sm text-gray-500! outline-none focus:border-blue-400 focus:ring-blue-400 ${isTask2 ? 'px-4 py-3': ' px-3 py-2'}`}
       >
         <option value="" disabled>
           {textToShow}

@@ -17,7 +17,7 @@ const ProfileForm = ({
 }) => {
 
   return (
-    <div className="flex h-full min-h-0 flex-col overflow-hidden rounded-2xl">
+    <div className="flex h-full flex-col overflow-hidden rounded-2xl">
       <div className="flex w-full shrink-0 overflow-hidden rounded-t-2xl  bg-[#EBF1FE]">
         {steps.map((step, index) => {
           const stepNumber = index + 1;
