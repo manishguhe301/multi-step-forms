@@ -59,7 +59,7 @@ const Step2 = ({ formData, setFormData, errors }: StepProps) => {
             desc={"We need hourly rates to track your project's billable amount."}
           />
 
-          <div className="flex items-center gap-2 mt-2.5">
+          <div className="flex items-center gap-2 mt-2.5 max-sm:flex-col max-sm:w-full">
             <Select
               id="hourly"
               textToShow="Project Hourly Rate"
@@ -68,7 +68,7 @@ const Step2 = ({ formData, setFormData, errors }: StepProps) => {
                 { value: "per-day", label: "Per Day" },
                 { value: "per-week", label: "Per Week" },
               ]}
-              className="w-1/2! "
+              className="w-1/2! max-sm:w-full! "
               value={formData.hourlyRateType}
               onChange={(value) =>
                 setFormData((prev) => ({
@@ -77,7 +77,7 @@ const Step2 = ({ formData, setFormData, errors }: StepProps) => {
                 }))
               }
             />
-            <div className="relative w-[30%] max-sm:w-1/2">
+            <div className="relative w-[30%] max-sm:w-full">
               <IndianRupee
                 className="absolute top-3 left-2 text-gray-400"
                 strokeWidth={3}
@@ -131,12 +131,8 @@ const Step2 = ({ formData, setFormData, errors }: StepProps) => {
                 budgetType: value,
               }))
             }
+            error={errors?.budgetType}
           />
-          {errors?.budgetType && (
-            <p className="mt-1 text-xs font-medium text-red-500">
-              {errors.budgetType}
-            </p>
-          )}
 
           <div className="mt-2.5 flex flex-col gap-2">
             <label
@@ -192,18 +188,13 @@ const Step2 = ({ formData, setFormData, errors }: StepProps) => {
                     }))
                   }
                   disabled={!formData.budgetAlertEnabled}
-
+                  error={errors?.budgetAlertPercentage}
                 />
 
                 <span className="shrink-0">% of budget</span>
               </div>
             </div>
           </div>
-          {errors?.budgetAlertPercentage && (
-            <p className="mt-1 text-xs font-medium text-red-500">
-              {errors.budgetAlertPercentage}
-            </p>
-          )}
         </InputContainer>
       </div>
     </div >

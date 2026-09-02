@@ -25,12 +25,8 @@ const Step1 = ({ formData, setFormData, errors }: StepProps) => {
                 projectName: value,
               }))
             }
+            error={errors?.projectName}
           />
-          {errors?.projectName && (
-            <p className="mt-0 text-xs font-medium text-red-500">
-              {errors.projectName}
-            </p>
-          )}
         </InputContainer>
 
         <InputContainer>
@@ -54,6 +50,7 @@ const Step1 = ({ formData, setFormData, errors }: StepProps) => {
                     client: value,
                   }))
                 }
+                // error={errors?.client}
               />
               <span className="shrink-0 text-sm text-gray-400">
                 Or
@@ -73,7 +70,6 @@ const Step1 = ({ formData, setFormData, errors }: StepProps) => {
               </span>
             </button>
           </div>
-
           {errors?.client && (
             <p className="text-xs font-medium text-red-500">
               {errors.client}
