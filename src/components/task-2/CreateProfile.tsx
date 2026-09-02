@@ -2,6 +2,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 
 import gradient from "../../assets/gradient.png";
 import { useNavigate } from "react-router-dom";
+import ProfileForm from "./ProfileForm";
 
 const CreateProfile = () => {
   const navigate = useNavigate()
@@ -15,7 +16,7 @@ const CreateProfile = () => {
 
       <div className="absolute left-1/2 top-1/2 h-[86vh] w-[78vw] max-w-7xl -translate-x-1/2 -translate-y-1/2 rounded-2xl bg-white shadow-2xl my-14">
 
-        s
+        <ProfileForm />
       </div>
 
       <div className="relative z-10 mx-auto mb-6 flex  items-center justify-center  w-[78vw] max-w-7xl ">
