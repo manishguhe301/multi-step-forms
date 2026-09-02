@@ -6,8 +6,9 @@ import Select from '../elements/Select'
 import { Check, CircleQuestionMark, X } from 'lucide-react'
 import { Tooltip } from '@mui/material'
 import Button from '../elements/Button'
+import type { ProfileProps } from './YourProfile'
 
-const BusinessInformation = () => {
+const BusinessInformation = ({ errors, formData, setFormData }: ProfileProps) => {
   return (
     <div className='flex flex-col items-center gap-8'>
       <StepHeading
@@ -25,6 +26,14 @@ const BusinessInformation = () => {
               <Input
                 placeholder='Input your Brand Name'
                 isTask2
+                value={formData.brandName}
+                onChange={(value) =>
+                  setFormData((prev) => ({
+                    ...prev,
+                    brandName: value,
+                  }))
+                }
+                error={errors.brandName}
               />
             </InputContainer>
             <InputContainer>
@@ -54,13 +63,14 @@ const BusinessInformation = () => {
                   { value: "national", label: "National" },
                 ]}
                 isTask2
-              // value={formData.client}
-              // onChange={(value) =>
-              //   setFormData((prev) => ({
-              //     ...prev,
-              //     client: value,
-              //   }))
-              // }
+                value={formData.brandType}
+                onChange={(value) =>
+                  setFormData((prev) => ({
+                    ...prev,
+                    brandType: value,
+                  }))
+                }
+                error={errors.brandType}
               />
             </InputContainer>
             <InputContainer>
@@ -68,6 +78,14 @@ const BusinessInformation = () => {
               <Input
                 isTask2
                 placeholder='Input your Street Address'
+                value={formData.streetAddress}
+                onChange={(value) =>
+                  setFormData((prev) => ({
+                    ...prev,
+                    streetAddress: value,
+                  }))
+                }
+                error={errors.streetAddress}
               />
             </InputContainer>
             <InputContainer>
@@ -75,6 +93,14 @@ const BusinessInformation = () => {
               <Input
                 placeholder='Input City'
                 isTask2
+                value={formData.city}
+                onChange={(value) =>
+                  setFormData((prev) => ({
+                    ...prev,
+                    city: value,
+                  }))
+                }
+                error={errors.city}
               />
             </InputContainer>
             <InputContainer>
@@ -82,6 +108,14 @@ const BusinessInformation = () => {
               <Input
                 placeholder='Input Zip Code'
                 isTask2
+                value={formData.zipCode}
+                onChange={(value) =>
+                  setFormData((prev) => ({
+                    ...prev,
+                    zipCode: value,
+                  }))
+                }
+                error={errors.zipCode}
               />
             </InputContainer>
             <InputContainer>
@@ -90,6 +124,14 @@ const BusinessInformation = () => {
                 placeholder='Input Tax ID Number'
                 isTask2
                 type='number'
+                value={formData.taxIdNumber}
+                onChange={(value) =>
+                  setFormData((prev) => ({
+                    ...prev,
+                    taxIdNumber: value,
+                  }))
+                }
+                error={errors.taxIdNumber}
               />
             </InputContainer>
           </div>

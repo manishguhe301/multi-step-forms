@@ -1,9 +1,16 @@
+import type { ProfileFormData } from '../../utils/helper'
 import Input from '../elements/Input'
 import InputContainer from '../elements/InputContainer'
 import Label from '../elements/Label'
 import StepHeading from './StepHeading'
 
-const YourProfile = () => {
+export type ProfileProps = {
+  formData: ProfileFormData
+  setFormData: React.Dispatch<React.SetStateAction<ProfileFormData>>
+  errors: Partial<Record<keyof ProfileFormData, string>>
+}
+
+const YourProfile = ({ errors, formData, setFormData }: ProfileProps) => {
   return (
     <div className='flex flex-col items-center gap-6'>
       <StepHeading
@@ -18,6 +25,14 @@ const YourProfile = () => {
           <Input
             placeholder='Input your First Name'
             isTask2
+            value={formData.firstName}
+            onChange={(value) =>
+              setFormData((prev) => ({
+                ...prev,
+                firstName: value,
+              }))
+            }
+            error={errors.firstName}
           />
         </InputContainer>
         <InputContainer>
@@ -25,6 +40,14 @@ const YourProfile = () => {
           <Input
             isTask2
             placeholder='Input your Last Name'
+            value={formData.lastName}
+            onChange={(value) =>
+              setFormData((prev) => ({
+                ...prev,
+                lastName: value,
+              }))
+            }
+            error={errors.lastName}
           />
         </InputContainer>
         <InputContainer>
@@ -33,6 +56,14 @@ const YourProfile = () => {
             isTask2
             placeholder='Input your Email'
             type='email'
+            value={formData.email}
+            onChange={(value) =>
+              setFormData((prev) => ({
+                ...prev,
+                email: value,
+              }))
+            }
+            error={errors.email}
           />
         </InputContainer>
         <InputContainer>
@@ -41,6 +72,14 @@ const YourProfile = () => {
             placeholder='Input your Phone Number'
             isTask2
             type='tel'
+            value={formData.phoneNumber}
+            onChange={(value) =>
+              setFormData((prev) => ({
+                ...prev,
+                phoneNumber: value,
+              }))
+            }
+            error={errors.phoneNumber}
           />
         </InputContainer>
         <InputContainer>
@@ -48,7 +87,15 @@ const YourProfile = () => {
           <Input
             placeholder='Create Password'
             isTask2
-            type='password'
+            type="password"
+            value={formData.password}
+            onChange={(value) =>
+              setFormData((prev) => ({
+                ...prev,
+                password: value,
+              }))
+            }
+            error={errors.password}
           />
         </InputContainer>
         <InputContainer>
@@ -57,6 +104,14 @@ const YourProfile = () => {
             placeholder='Confirm Your Password'
             isTask2
             type='password'
+            value={formData.confirmPassword}
+            onChange={(value) =>
+              setFormData((prev) => ({
+                ...prev,
+                confirmPassword: value,
+              }))
+            }
+            error={errors.confirmPassword}
           />
         </InputContainer>
       </div>
