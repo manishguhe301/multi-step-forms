@@ -1,6 +1,6 @@
 import YourProfile from "./YourProfile";
 import BusinessInformation from "./BusinessInformation";
-
+import AdditionalUsers from "./AdditionalUsers";
 
 const steps = [
   "Your Profile",
@@ -73,6 +73,7 @@ ${isCurrent && currentStep !== 3 ? "rounded-r-full" : ""}
       <div className="min-h-0 flex-1 overflow-y-auto p-6 sm:p-8">
         {currentStep === 1 && <YourProfile />}
         {currentStep === 2 && <BusinessInformation />}
+        {currentStep === 3 && <AdditionalUsers />}
       </div>
     </div>
   );

@@ -67,8 +67,12 @@ const CreateProfile = () => {
               }
             }}
           >
-            Next Step
-            <ChevronRight size={17} strokeWidth={2.5} />
+            {currentStep === 3 ? <span>Submit</span> :
+              <>
+                Next Step
+                <ChevronRight size={17} strokeWidth={2.5} />
+              </>
+            }
           </button>
         </div>
       </div>
