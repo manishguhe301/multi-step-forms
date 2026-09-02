@@ -1,6 +1,7 @@
 import YourProfile from "./YourProfile";
 import BusinessInformation from "./BusinessInformation";
 import AdditionalUsers from "./AdditionalUsers";
+import type { ProfileFormData } from "../../utils/helper";
 
 const steps = [
   "Your Profile",
@@ -10,10 +11,16 @@ const steps = [
 
 const ProfileForm = ({
   currentStep,
-  setCurrentStep
+  setCurrentStep,
+  formData,
+  setFormData,
+  errors
 }: {
   currentStep: number
   setCurrentStep: React.Dispatch<React.SetStateAction<number>>
+  formData: ProfileFormData
+  setFormData: React.Dispatch<React.SetStateAction<ProfileFormData>>
+  errors: Partial<Record<keyof ProfileFormData, string>>
 }) => {
 
   return (
@@ -71,8 +78,18 @@ ${isCurrent && currentStep !== 3 ? "rounded-r-full" : ""}
 
 
       <div className="min-h-0 flex-1 overflow-y-auto p-6 sm:p-8">
-        {currentStep === 1 && <YourProfile />}
-        {currentStep === 2 && <BusinessInformation />}
+        {currentStep === 1 &&
+          <YourProfile
+            formData={formData}
+            setFormData={setFormData}
+            errors={errors}
+          />}
+        {currentStep === 2 &&
+          <BusinessInformation
+            formData={formData}
+            setFormData={setFormData}
+            errors={errors}
+          />}
         {currentStep === 3 && <AdditionalUsers />}
       </div>
     </div>

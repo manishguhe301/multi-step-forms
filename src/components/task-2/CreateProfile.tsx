@@ -3,12 +3,61 @@ import gradient from "../../assets/gradient.png";
 import { useNavigate } from "react-router-dom";
 import ProfileForm from "./ProfileForm";
 import { useState } from "react";
+import { defaultProfileFields, validateProfileStep, type ProfileFormData, type ProfileFormErrors } from "../../utils/helper";
 
 const CreateProfile = () => {
   const navigate = useNavigate();
-  const [currentStep, setCurrentStep] = useState(2);
+  const [currentStep, setCurrentStep] = useState(1);
 
   const totalSteps = 3;
+
+  const [formData, setFormData] =
+    useState<ProfileFormData>(defaultProfileFields);
+
+  const [errors, setErrors] =
+    useState<ProfileFormErrors>({});
+
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
+  const handleNext = () => {
+    const newErrors = validateProfileStep(currentStep, formData);
+
+    setErrors(newErrors);
+
+    if (Object.keys(newErrors).length > 0) {
+      return;
+    }
+
+    if (currentStep < totalSteps) {
+      setCurrentStep((prev) => prev + 1);
+    }
+  };
+
+  const handleSubmit = () => {
+    const newErrors = validateProfileStep(currentStep, formData);
+
+    setErrors(newErrors);
+
+    if (Object.keys(newErrors).length > 0) {
+      return;
+    }
+
+    localStorage.setItem(
+      "profile-form",
+      JSON.stringify(formData)
+    );
+
+    console.log("Profile submitted:", formData);
+
+    setIsSubmitted(true);
+
+    setTimeout(() => {
+      setIsSubmitted(false);
+      setFormData(defaultProfileFields);
+      setCurrentStep(1);
+      setErrors({});
+    }, 5000);
+  };
 
   return (
     <div
@@ -42,39 +91,66 @@ const CreateProfile = () => {
         </div>
 
         <div className="w-full max-w-7xl rounded-2xl bg-white shadow-2xl">
-          <ProfileForm
-            setCurrentStep={setCurrentStep}
-            currentStep={currentStep}
-          />
+          {isSubmitted ? (
+            <div className="flex min-h-[400px] flex-col items-center justify-center px-6 text-center">
+              <div className="flex size-14 items-center justify-center rounded-full bg-green-100">
+                <span className="text-2xl text-green-600">✓</span>
+              </div>
+
+              <h2 className="mt-4 text-xl font-semibold text-gray-700">
+                Account created successfully
+              </h2>
+
+              <p className="mt-2 text-sm text-gray-400">
+                Your information has been saved successfully.
+              </p>
+
+              <span className="mt-2 text-xs text-gray-400">
+                Redirecting to form in 5 seconds...
+              </span>
+            </div>
+          ) : (
+            <ProfileForm
+              currentStep={currentStep}
+              setCurrentStep={setCurrentStep}
+              formData={formData}
+              setFormData={setFormData}
+              errors={errors}
+            />
+          )}
         </div>
 
-        <div className="flex w-full items-center justify-between pt-8 sm:pt-10">
-          <button
-            type="button"
-            className="flex cursor-pointer items-center gap-1.5 text-[#5FACFA] transition-colors"
-            onClick={() => navigate("/")}
-          >
-            <ChevronLeft size={17} strokeWidth={2.5} />
-            Back to Login
-          </button>
+        {!isSubmitted && (
+          <div className="flex w-full items-center justify-between pt-8 sm:pt-10">
+            <button
+              type="button"
+              className="flex cursor-pointer items-center gap-1.5 text-[#5FACFA]"
+              onClick={() => navigate("/")}
+            >
+              <ChevronLeft size={17} strokeWidth={2.5} />
+              Back to Login
+            </button>
 
-          <button
-            type="button"
-            className="flex cursor-pointer items-center gap-1 rounded-sm bg-linear-to-r from-[#8993F7] to-[#747FEA] px-6 py-2.5 text-sm font-medium text-white shadow-sm transition-all hover:opacity-90 sm:px-8 sm:text-base"
-            onClick={() => {
-              if (currentStep < totalSteps) {
-                setCurrentStep((prev) => prev + 1);
+            <button
+              type="button"
+              className="flex cursor-pointer items-center gap-1 rounded-sm bg-linear-to-r from-[#8993F7] to-[#747FEA] px-6 py-2.5 text-sm font-medium text-white shadow-sm transition-all hover:opacity-90 sm:px-8 sm:text-base"
+              onClick={
+                currentStep === totalSteps
+                  ? handleSubmit
+                  : handleNext
               }
-            }}
-          >
-            {currentStep === 3 ? <span>Submit</span> :
-              <>
-                Next Step
-                <ChevronRight size={17} strokeWidth={2.5} />
-              </>
-            }
-          </button>
-        </div>
+            >
+              {currentStep === totalSteps ? (
+                "Submit"
+              ) : (
+                <>
+                  Next Step
+                  <ChevronRight size={17} strokeWidth={2.5} />
+                </>
+              )}
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );
