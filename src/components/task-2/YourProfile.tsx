@@ -12,7 +12,7 @@ export type ProfileProps = {
 
 const YourProfile = ({ errors, formData, setFormData }: ProfileProps) => {
   return (
-    <div className='flex flex-col items-center gap-6'>
+    <div className='flex flex-col items-center gap-8'>
       <StepHeading
         currentStep='1'
         heading='Your Profile'

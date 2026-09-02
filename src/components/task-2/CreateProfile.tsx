@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import ProfileForm from "./ProfileForm";
 import { useState } from "react";
 import { defaultProfileFields, validateProfileStep, type ProfileFormData, type ProfileFormErrors } from "../../utils/helper";
+import Success from "../elements/Success";
 
 const CreateProfile = () => {
   const navigate = useNavigate();
@@ -92,23 +93,11 @@ const CreateProfile = () => {
 
         <div className="w-full max-w-7xl rounded-2xl bg-white shadow-2xl">
           {isSubmitted ? (
-            <div className="flex min-h-[400px] flex-col items-center justify-center px-6 text-center">
-              <div className="flex size-14 items-center justify-center rounded-full bg-green-100">
-                <span className="text-2xl text-green-600">✓</span>
-              </div>
-
-              <h2 className="mt-4 text-xl font-semibold text-gray-700">
-                Account created successfully
-              </h2>
-
-              <p className="mt-2 text-sm text-gray-400">
-                Your information has been saved successfully.
-              </p>
-
-              <span className="mt-2 text-xs text-gray-400">
-                Redirecting to form in 5 seconds...
-              </span>
-            </div>
+            <Success
+              successMsg="Account created successfully"
+              desc=" Your information has been saved successfully."
+              className="flex min-h-[400px] flex-col items-center justify-center px-6 text-center"
+            />
           ) : (
             <ProfileForm
               currentStep={currentStep}

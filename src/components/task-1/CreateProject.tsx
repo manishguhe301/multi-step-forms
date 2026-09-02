@@ -1,4 +1,4 @@
-import { Check, ChevronLeft, X } from "lucide-react";
+import { ChevronLeft, X } from "lucide-react";
 import { useState } from "react";
 import Step1 from "./Step1";
 import Step2 from "./Step2";
@@ -6,6 +6,7 @@ import Step3 from "./Step3";
 import Step4 from "./Step4";
 import { type ProjectFormData, type FormErrors, validateStep, defaultFields } from "../../utils/helper";
 import { useNavigate } from "react-router-dom";
+import Success from "../elements/Success";
 
 const CreateProject = () => {
   const totalSteps = 4;
@@ -58,27 +59,11 @@ const CreateProject = () => {
     <div className="relative h-screen w-screen overflow-hidden bg-gray-100">
       {
         isSubmitted ? (
-          <div className="absolute left-1/2 top-1/2 flex h-162.5 max-h-[calc(100vh-2rem)] w-121 max-w-[calc(100vw-2rem)] -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center rounded-xl bg-white p-6 shadow-2xl" >
-            <div className="flex size-14 items-center justify-center rounded-full bg-green-100">
-              <Check
-                size={28}
-                strokeWidth={3}
-                className="text-green-600"
-              />
-            </div>
-
-            <h2 className="mt-4 text-lg font-semibold text-gray-700">
-              Project created successfully
-            </h2>
-
-            <p className="mt-2 text-center text-sm text-gray-400">
-              Your project has been saved successfully.
-            </p>
-
-            <span className="mt-2 text-xs font-medium text-gray-400">
-              Redirecting to form in 5 seconds...
-            </span>
-          </div>
+          <Success
+            className="absolute left-1/2 top-1/2 flex h-162.5 max-h-[calc(100vh-2rem)] w-121 max-w-[calc(100vw-2rem)] -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center rounded-xl bg-white p-6 shadow-2xl"
+            successMsg="Project created successfully"
+            desc="Your project has been saved successfully."
+          />
         ) : <div className="absolute left-1/2 top-1/2 flex h-162.5 max-h-[calc(100vh-2rem)] w-121 max-w-[calc(100vw-2rem)] -translate-x-1/2 -translate-y-1/2 flex-col rounded-xl bg-white p-3 shadow-2xl" >
           <button
             type="button"
