@@ -3,9 +3,12 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import gradient from "../../assets/gradient.png";
 import { useNavigate } from "react-router-dom";
 import ProfileForm from "./ProfileForm";
+import { useState } from "react";
 
 const CreateProfile = () => {
   const navigate = useNavigate()
+  const [currentStep, setCurrentStep] = useState(1);
+  const totalSteps = 3;
 
   return (
     <div
@@ -16,7 +19,7 @@ const CreateProfile = () => {
 
       <div className="absolute left-1/2 top-1/2 h-[86vh] w-[78vw] max-w-7xl -translate-x-1/2 -translate-y-1/2 rounded-2xl bg-white shadow-2xl my-14">
 
-        <ProfileForm />
+        <ProfileForm setCurrentStep={setCurrentStep} currentStep={currentStep} />
       </div>
 
       <div className="relative z-10 mx-auto mb-6 flex  items-center justify-center  w-[78vw] max-w-7xl ">
@@ -54,6 +57,11 @@ const CreateProfile = () => {
         <button
           type="button"
           className="flex cursor-pointer items-center gap-1 rounded-sm bg-linear-to-r from-[#8993F7] to-[#747FEA] px-8 py-2.5 font-medium text-white shadow-sm transition-all hover:opacity-90 text-base"
+          onClick={() => {
+            if (currentStep < totalSteps) {
+              setCurrentStep((prev) => prev + 1);
+            }
+          }}
         >
           Next Step
           <ChevronRight size={17} strokeWidth={2.5} />

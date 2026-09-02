@@ -1,4 +1,6 @@
-import { useState } from "react";
+import YourProfile from "./YourProfile";
+import BusinessInformation from "./BusinessInformation";
+
 
 const steps = [
   "Your Profile",
@@ -6,8 +8,13 @@ const steps = [
   "Additional Users",
 ];
 
-const ProfileForm = () => {
-  const [currentStep, setCurrentStep] = useState(3);
+const ProfileForm = ({
+  currentStep,
+  setCurrentStep
+}: {
+  currentStep: number
+  setCurrentStep: React.Dispatch<React.SetStateAction<number>>
+}) => {
 
   return (
     <div className="flex h-full min-h-0 flex-col overflow-hidden rounded-2xl">
@@ -64,7 +71,8 @@ ${isCurrent && currentStep !== 3 ? "rounded-r-full" : ""}
 
 
       <div className="min-h-0 flex-1 overflow-y-auto p-6 sm:p-8">
-        j
+        {currentStep === 1 && <YourProfile />}
+        {currentStep === 2 && <BusinessInformation />}
       </div>
     </div>
   );
