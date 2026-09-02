@@ -3,18 +3,19 @@ import InputContainer from '../elements/InputContainer'
 import Label from '../elements/Label'
 import Input from '../elements/Input'
 import Select from '../elements/Select'
-import { CircleQuestionMark } from 'lucide-react'
+import { Check, CircleQuestionMark, X } from 'lucide-react'
 import { Tooltip } from '@mui/material'
+import Button from '../elements/Button'
 
 const BusinessInformation = () => {
   return (
-    <div className='flex flex-col items-center gap-6'>
+    <div className='flex flex-col items-center gap-8'>
       <StepHeading
         currentStep='2'
         heading='Business Information'
         desc="Please, enter information about your company."
       />
-      <div className='flex flex-col gap-4 items-center justify-center  w-3xl max-sm:grid-cols-1 max-sm:w-full max-md:w-full max-sm:gap-2'>
+      <div className='flex flex-col gap-8  justify-center  w-3xl max-sm:grid-cols-1 max-sm:w-full max-md:w-full max-sm:gap-2'>
         <div>
           <p className='text-[#6cb1fb] font-light! text-lg uppercase'>General Information</p>
 
@@ -94,9 +95,51 @@ const BusinessInformation = () => {
           </div>
 
         </div>
-        <div>
+
+        <div className='flex flex-col gap-2'>
           <p className='text-[#6cb1fb] font-light! text-lg uppercase'>Documents</p>
-          lorem1000
+
+          <div className='flex flex-col gap-4'>
+            <Label
+              isTask2
+              label="Once the following documents are signed, you'll be ready to get started"
+            />
+
+            <div className="w-full flex flex-row items-center  gap-4 mb-2">
+              <div className='flex  items-center  justify-between w-full border px-5 py-2.5 rounded-sm border-gray-300 text-gray-500'>
+                <p>Electronically sign the agreement(s)</p>
+                <Check size={24} className='text-green-500' strokeWidth={4} />
+              </div>
+              <Button />
+            </div>
+
+            <div className="w-full flex flex-row items-center  gap-4">
+              <div className='flex  items-center  justify-between w-full border px-5 py-2.5 rounded-sm border-gray-300 text-gray-500'>
+                <p>Non adult beverage Kroger market supplier waiver and relese</p>
+                <X size={24} className='text-red-500' strokeWidth={4} />
+              </div>
+              <Button />
+            </div>
+          </div>
+        </div>
+
+        <div className='flex flex-col gap-2'>
+          <p className='text-[#6cb1fb] font-light! text-lg uppercase'>COI PDF upload</p>
+
+          <div className='flex flex-col gap-4'>
+            <Label
+              isTask2
+              label="Once the following documents are signed, you'll be ready to get started"
+            />
+
+            <div className="w-full flex flex-row items-center  gap-4 mb-2">
+              <div className='flex  items-center  justify-between w-full border px-5 py-2.5 rounded-sm border-gray-300 text-gray-500'>
+                <p>Electronically sign the agreement(s)</p>
+                <Check size={24} className='text-green-500' strokeWidth={4} />
+              </div>
+              <Button />
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -104,3 +147,4 @@ const BusinessInformation = () => {
 }
 
 export default BusinessInformation
+
