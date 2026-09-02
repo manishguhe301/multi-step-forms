@@ -8,7 +8,7 @@ import Success from "../elements/Success";
 
 const CreateProfile = () => {
   const navigate = useNavigate();
-  const [currentStep, setCurrentStep] = useState(2);
+  const [currentStep, setCurrentStep] = useState(1);
 
   const totalSteps = 3;
 
