@@ -12,7 +12,7 @@ const YourProfile = () => {
         desc="Enter the login information for your account. You will be able to create additional users after registering."
       />
 
-      <div className='grid grid-cols-2 gap-4 w-3xl max-sm:grid-cols-1 max-sm:w-full max-md:w-full'>
+      <div className='grid grid-cols-2 gap-4 w-3xl max-sm:grid-cols-1 max-sm:w-full max-md:w-full max-sm:gap-2'>
         <InputContainer>
           <Label isTask2 label='First Name' isRequired />
           <Input
