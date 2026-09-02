@@ -124,3 +124,104 @@ export const defaultFields = {
   view: 'List',
   projectPermission: 'Everyone',
 };
+
+export type ProfileFormData = {
+  firstName: string;
+  lastName: string;
+  email: string;
+  phoneNumber: string;
+  password: string;
+  confirmPassword: string;
+
+  brandName: string;
+  brandType: string;
+  streetAddress: string;
+  city: string;
+  zipCode: string;
+  taxIdNumber: string;
+};
+
+export type ProfileFormErrors = Partial<Record<keyof ProfileFormData, string>>;
+
+export const defaultProfileFields: ProfileFormData = {
+  firstName: '',
+  lastName: '',
+  email: '',
+  phoneNumber: '',
+  password: '',
+  confirmPassword: '',
+
+  brandName: '',
+  brandType: '',
+  streetAddress: '',
+  city: '',
+  zipCode: '',
+  taxIdNumber: '',
+};
+
+export const validateProfileStep = (
+  step: number,
+  formData: ProfileFormData,
+): ProfileFormErrors => {
+  const errors: ProfileFormErrors = {};
+
+  if (step === 1) {
+    if (!formData.firstName.trim()) {
+      errors.firstName = 'First name is required';
+    }
+
+    if (!formData.lastName.trim()) {
+      errors.lastName = 'Last name is required';
+    }
+
+    if (!formData.email.trim()) {
+      errors.email = 'Email is required';
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      errors.email = 'Enter a valid email address';
+    }
+
+    if (!formData.phoneNumber.trim()) {
+      errors.phoneNumber = 'Phone number is required';
+    }
+
+    if (!formData.password) {
+      errors.password = 'Password is required';
+    } else if (formData.password.length < 6) {
+      errors.password = 'Password must be at least 6 characters';
+    }
+
+    if (!formData.confirmPassword) {
+      errors.confirmPassword = 'Please confirm your password';
+    } else if (formData.password !== formData.confirmPassword) {
+      errors.confirmPassword = 'Passwords do not match';
+    }
+  }
+
+  if (step === 2) {
+    if (!formData.brandName.trim()) {
+      errors.brandName = 'Brand name is required';
+    }
+
+    if (!formData.brandType) {
+      errors.brandType = 'Brand type is required';
+    }
+
+    if (!formData.streetAddress.trim()) {
+      errors.streetAddress = 'Street address is required';
+    }
+
+    if (!formData.city.trim()) {
+      errors.city = 'City is required';
+    }
+
+    if (!formData.zipCode.trim()) {
+      errors.zipCode = 'Zip code is required';
+    }
+
+    if (!formData.taxIdNumber.trim()) {
+      errors.taxIdNumber = 'Tax ID number is required';
+    }
+  }
+
+  return errors;
+};

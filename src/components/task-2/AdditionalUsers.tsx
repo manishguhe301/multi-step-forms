@@ -7,7 +7,7 @@ const AdditionalUsers = () => {
 
       <p className="mt-2 max-w-md text-sm leading-6 text-gray-400">
         Additional user setup will be available after completing your
-        profile and business information.
+        profile and business information. You can skip this step and click on submit.
       </p>
     </div>
   );
