@@ -8,7 +8,7 @@ import Success from "../elements/Success";
 
 const CreateProfile = () => {
   const navigate = useNavigate();
-  const [currentStep, setCurrentStep] = useState(1);
+  const [currentStep, setCurrentStep] = useState(2);
 
   const totalSteps = 3;
 
@@ -67,7 +67,7 @@ const CreateProfile = () => {
     >
       <div className="pointer-events-none fixed inset-0 backdrop-blur-sm" />
 
-      <div className="relative z-10 mx-auto flex min-h-screen w-full max-w-7xl flex-col items-center">
+      <div className="relative z-10 mx-auto flex min-h-screen w-full max-w-5xl flex-col items-center">
 
         <div className="relative flex w-full items-center justify-center pb-8 sm:pb-10">
           <button

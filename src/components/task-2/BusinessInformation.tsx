@@ -16,11 +16,11 @@ const BusinessInformation = ({ errors, formData, setFormData }: ProfileProps) =>
         heading='Business Information'
         desc="Please, enter information about your company."
       />
-      <div className='flex flex-col gap-8  justify-center  w-3xl max-sm:grid-cols-1 max-sm:w-full max-md:w-full max-sm:gap-2'>
+      <div className='flex flex-col gap-8  justify-center lg:w-3xl  max-sm:w-full max-md:w-full max-sm:gap-2'>
         <div>
           <p className='text-[#6cb1fb] font-light! text-lg uppercase'>General Information</p>
 
-          <div className='grid grid-cols-2 gap-4 w-3xl max-sm:grid-cols-1 max-sm:w-full max-md:w-full mt-2'>
+          <div className='grid grid-cols-2 gap-4 lg:w-3xl max-sm:grid-cols-1 max-sm:w-full max-md:w-full mt-2'>
             <InputContainer>
               <Label isTask2 label='Brand Name' isRequired />
               <Input
